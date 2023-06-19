@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "prettier"
+  ],
+  "singleQuote": true,
+  "trailingComma": "all",
+  "semi":  true,
+  "printWidth":  120,
+  "tabWidth":  2,
+  "useTabs": false,
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "arrowParens": "avoid",
+  "editor.fontSize": 16,
+  "endOfLine":"lf",
+  "bracketSameLine": false,
+  "embeddedLanguageFormatting": "auto",
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxSingleQuote": false,
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed",
+  "requirePragma": false,
+  "singleAttributePerLine": false,
+  "vueIndentScriptAndStyle": false
+}
