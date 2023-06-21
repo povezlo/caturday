@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { NotificationComponent } from '../../ui-kit';
+import { NotificationComponent } from '@shared/ui-kit/notification';
 
 
 export const DELAY_TIME_3000 = 3000;

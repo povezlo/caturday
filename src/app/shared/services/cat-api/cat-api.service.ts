@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { ApiClientBaseService } from '../base-api/base-api.service';
+
 import { ICatImage } from '../../interfaces';
+import { ApiClientBaseService } from '../base-api';
 
 @Injectable({
   providedIn: 'root'

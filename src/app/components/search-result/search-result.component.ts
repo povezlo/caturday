@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
+
+import { Select, Store } from '@ngxs/store';
+import { CatState } from '@store/state';
+import { GetCats } from '@store/actions';
 
 import { ICatImage } from '@shared/interfaces';
-import { ApiCatService, LoaderService } from '@shared/services';
-import { LoaderState } from '@shared/ui-kit';
 import { trackByIndexFn } from '@shared/helpers';
 
 @Component({
@@ -13,25 +15,13 @@ import { trackByIndexFn } from '@shared/helpers';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchResultComponent  implements OnInit {
-  catlist$: Observable<ICatImage[]> | null = null;
+  @Select(CatState.filteredCats) catlist$!: Observable<ICatImage[]>;
 
-  sharedLoaderState = LoaderState;
   trackByFn = trackByIndexFn;
 
-  constructor(private api: ApiCatService, private loader: LoaderService,) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.loader.loaderStateSource$.next(LoaderState.loading);
-    this.catlist$ = this.api.getCats()
-      .pipe(
-        tap((image: ICatImage[]) => {
-          if(image) {
-            this.loader.loaderStateSource$.next(LoaderState.loaded);
-
-          } else {
-            this.loader.loaderStateSource$.next(LoaderState.noData);
-          }
-        })
-      );
+      this.store.dispatch(new GetCats());
   }
 }

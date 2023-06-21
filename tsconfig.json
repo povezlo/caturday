@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -25,13 +24,10 @@
     ],
     "paths": {
       "@environments": ["src/environments/environment"],
-      "@assets": ["src/assets"],
-      "@shared/interceptors": ["src/app/shared/interceptors"],
-      "@shared/services": ["src/app/shared/services"],
-      "@shared/interfaces": ["src/app/shared/interfaces"],
-      "@shared/ui-kit": ["src/app/shared/ui-kit"],
-      "@shared/helpers": ["src/app/shared/helpers"],
-      "@components": ["src/app/components"]
+      "@assets/*": ["src/assets/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@store/*": ["src/app/store/*"],
+      "@components/*": ["src/app/components/*"]
     }
   },
   "angularCompilerOptions": {

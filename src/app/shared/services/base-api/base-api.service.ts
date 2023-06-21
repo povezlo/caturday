@@ -3,8 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { IHttpParams } from 'src/app/shared/interfaces';
-import { ENV_API, BASE_URL } from 'src/assets/injectTokens/injectTokens';
+import { BASE_URL, ENV_API } from '@assets/injectTokens';
+import { IHttpParams } from '@shared/interfaces';
+
 
 @Injectable({
   providedIn: 'root'

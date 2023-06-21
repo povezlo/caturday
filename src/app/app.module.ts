@@ -4,12 +4,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
+import { NgxsModule } from '@ngxs/store';
+import { CatState } from '@store/state';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 
 import { ErrorInterceptor, TokenInterceptor } from './shared/interceptors';
-import { BASE_URL, ENV_API } from '@assets';
+import { BASE_URL, ENV_API } from '@assets/injectTokens';
 import { environment } from '@environments';
 import { FooterModule, HeaderModule } from './components';
 
@@ -23,7 +25,10 @@ import { FooterModule, HeaderModule } from './components';
     HttpClientModule,
     HeaderModule,
     FooterModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxsModule.forRoot([CatState], {
+      developmentMode: !environment.production
+    })
   ],
   providers: [{
         provide: HTTP_INTERCEPTORS,
