@@ -1,0 +1,17 @@
+<app-loader>
+  <ng-container *ngIf="catlist$ | async as catList">
+    <mat-card *ngFor="let item of catList; trackBy: trackByFn">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>Shiba Inu</mat-card-title>
+      <mat-card-subtitle>Small</mat-card-subtitle>
+      <img mat-card-sm-image [src]="item.url" alt="cat">
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+  </mat-card-content>
+</mat-card>
+  </ng-container>
+</app-loader>
+
+

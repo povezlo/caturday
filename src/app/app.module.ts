@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { AppComponent } from './app.component';
+
+import { ErrorInterceptor, TokenInterceptor } from './shared/interceptors';
 import { BASE_URL, ENV_API } from '@assets';
 import { environment } from '@environments';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { ErrorInterceptor, TokenInterceptor } from './shared/interceptors';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/material/snack-bar';
+import { FooterModule, HeaderModule } from './components';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +21,8 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/mater
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    HeaderModule,
+    FooterModule,
     MatSnackBarModule
   ],
   providers: [{
