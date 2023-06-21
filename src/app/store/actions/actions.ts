@@ -1,4 +1,4 @@
-import { ICatImage } from '@shared/interfaces';
+import { ICatBreed, ICatImage, ICategories } from '@shared/interfaces';
 
 export class GetCats {
   static readonly type = '[Cat] Get Cats';
@@ -9,12 +9,20 @@ export class SetCats {
   constructor(public payload: ICatImage[]) {}
 }
 
-// export class SetSelectedBreed {
-//   static readonly type = '[Cat] Set Selected Breed';
-//   constructor(public payload: string) {}
-// }
+export class GetBreeds {
+  static readonly type = '[Breed] Get Breeds';
+}
 
-// export class SetSelectedLimit {
-//   static readonly type = '[Cat] Set Selected Limit';
-//   constructor(public payload: number) {}
-// }
+export class SetBreeds {
+  static readonly type = '[Breed] Set Breeds';
+  constructor(public payload: ICatBreed[]) {}
+}
+
+export class GetCategories {
+  static readonly type = '[Categories] Get Categories';
+}
+
+export class SetCategories {
+  static readonly type = '[Categories] Set Categories';
+  constructor(public payload: ICategories[]) {}
+}

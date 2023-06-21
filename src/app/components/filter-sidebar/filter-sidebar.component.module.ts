@@ -1,13 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {MatListModule} from '@angular/material/list'; 
 
 import { FilterSidebarComponent } from './filter-sidebar.component';
-
+import { MatCardModule } from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   imports: [
     CommonModule,
-    MatListModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   declarations: [FilterSidebarComponent],
   exports: [FilterSidebarComponent],

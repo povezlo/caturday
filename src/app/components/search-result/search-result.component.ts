@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Select, Store } from '@ngxs/store';
@@ -7,6 +7,7 @@ import { GetCats } from '@store/actions';
 
 import { ICatImage } from '@shared/interfaces';
 import { trackByIndexFn } from '@shared/helpers';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-search-result',
@@ -15,7 +16,8 @@ import { trackByIndexFn } from '@shared/helpers';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchResultComponent  implements OnInit {
-  @Select(CatState.filteredCats) catlist$!: Observable<ICatImage[]>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @Select(CatState.getCats) catlist$!: Observable<ICatImage[]>;
 
   trackByFn = trackByIndexFn;
 
@@ -23,5 +25,11 @@ export class SearchResultComponent  implements OnInit {
 
   ngOnInit(): void {
       this.store.dispatch(new GetCats());
+  }
+
+  onPageChange(event: PageEvent) {
+    const startIndex = event.pageIndex * event.pageSize;
+    const endIndex = startIndex + event.pageSize;
+    // this.store.dispatch(new GetCats(startIndex, endIndex));
   }
 }

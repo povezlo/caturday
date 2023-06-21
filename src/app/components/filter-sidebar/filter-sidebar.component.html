@@ -1,7 +1,26 @@
-<!-- Левая боковая панель -->
-<mat-nav-list>
-  <a mat-list-item routerLink="/link1">Ссылка 1</a>
-  <a mat-list-item routerLink="/link2">Ссылка 2</a>
-  <a mat-list-item routerLink="/link3">Ссылка 3</a>
-  <!-- Добавьте необходимые ссылки в боковую панель -->
-</mat-nav-list>
+<mat-card class="sidebar">
+  <mat-form-field appearance="fill">
+    <mat-label>Порода</mat-label>
+    <mat-select [(value)]="selectedBreed" (selectionChange)="applyFilters()">
+      <mat-option value="all">Все породы</mat-option>
+      <!-- <mat-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</mat-option> -->
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Categories</mat-label>
+    <mat-select (selectionChange)="applyFilters()">
+      <mat-option *ngFor="let category of categorieslist$ | async" [value]="category.id">{{ category.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Количество результатов</mat-label>
+    <mat-select [(value)]="selectedLimit" (selectionChange)="applyFilters()">
+      <mat-option value="10">10</mat-option>
+      <mat-option value="20">20</mat-option>
+      <mat-option value="30">30</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>
+<h2>{{breedlist$ | async | json}}</h2>

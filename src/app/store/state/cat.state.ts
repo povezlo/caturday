@@ -18,7 +18,7 @@ export class CatState {
   constructor(private api: ApiCatService, private loader: LoaderService) {}
 
   @Selector()
-  static filteredCats(state: ICatImage[]) {
+  static getCats(state: ICatImage[]) {
 
     return state;
   }
@@ -42,14 +42,4 @@ export class CatState {
   setCats({ setState }: StateContext<ICatImage[]>, { payload }: SetCats) {
     setState(payload);
   }
-
-  // @Action(SetSelectedBreed)
-  // setSelectedBreed({ patchState }: StateContext<Cat[]>, { payload }: SetSelectedBreed) {
-  //   patchState([{ selectedBreed: payload }]);
-  // }
-
-  // @Action(SetSelectedLimit)
-  // setSelectedLimit({ patchState }: StateContext<Cat[]>, { payload }: SetSelectedLimit) {
-  //   patchState([{ selectedLimit: payload }]);
-  // }
 }

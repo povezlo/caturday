@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 import { SearchResultComponent } from './search-result.component';
 import { LoaderModule } from '@shared/ui-kit';
 import { CardModule } from '@components/card';
@@ -9,7 +11,8 @@ import { CardModule } from '@components/card';
   imports: [
     CommonModule,
     LoaderModule,
-    CardModule
+    CardModule,
+    MatPaginatorModule
   ],
   declarations: [SearchResultComponent],
   exports: [SearchResultComponent],
