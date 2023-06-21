@@ -1,11 +1,10 @@
 <app-loader>
-  <div *ngIf="(catlist$ | async  | slice: paginator.pageIndex * paginator.pageSize : (paginator.pageIndex + 1) * paginator.pageSize) as catList" class="card__wrapper">
+  <div *ngIf="(catlist$ | async | sliceList: paginator) as catList" class="card__wrapper">
       <app-card *ngFor="let item of catList; trackBy: trackByFn" [url]="item.url"></app-card>
   </div>
+</app-loader>
 
   <mat-paginator #paginator [length]="200" [pageSizeOptions]="[10, 20, 50]" aria-label="Select page">
   </mat-paginator>
-</app-loader>
-
 
 

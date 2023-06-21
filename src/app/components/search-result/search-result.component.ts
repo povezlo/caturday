@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
 import { CatState } from '@store/state';
 import { GetCats } from '@store/actions';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { ICatImage } from '@shared/interfaces';
 import { trackByIndexFn } from '@shared/helpers';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-search-result',
@@ -25,11 +25,5 @@ export class SearchResultComponent  implements OnInit {
 
   ngOnInit(): void {
       this.store.dispatch(new GetCats());
-  }
-
-  onPageChange(event: PageEvent) {
-    const startIndex = event.pageIndex * event.pageSize;
-    const endIndex = startIndex + event.pageSize;
-    // this.store.dispatch(new GetCats(startIndex, endIndex));
   }
 }
