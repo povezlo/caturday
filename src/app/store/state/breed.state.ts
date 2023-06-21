@@ -3,9 +3,9 @@ import { tap } from 'rxjs/operators';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { GetBreeds, SetBreeds } from '@store/actions';
 import { ApiCatService } from '@shared/services';
-import { ICatBreed } from '@shared/interfaces';
+import { ICatBreedResponse } from '@shared/interfaces';
 
-@State<ICatBreed[]>({
+@State<ICatBreedResponse[]>({
   name: 'breeds',
   defaults: []
 })
@@ -15,12 +15,12 @@ export class BreedState {
   constructor(private api: ApiCatService) {}
 
   @Selector()
-  static getBreeds(state: ICatBreed[]) {
+  static getBreeds(state: ICatBreedResponse[]) {
     return state;
   }
 
   @Action(GetBreeds)
-  getBreeds({ setState }: StateContext<ICatBreed[]>) {
+  getBreeds({ setState }: StateContext<ICatBreedResponse[]>) {
     return this.api.getBreeds().pipe(
       tap((breeds) => {
         setState(breeds);
@@ -29,7 +29,7 @@ export class BreedState {
   }
 
   @Action(SetBreeds)
-  setBreeds({ setState }: StateContext<ICatBreed[]>, { payload }: SetBreeds) {
+  setBreeds({ setState }: StateContext<ICatBreedResponse[]>, { payload }: SetBreeds) {
     setState(payload);
   }
 }

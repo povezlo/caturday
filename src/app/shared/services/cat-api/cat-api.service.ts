@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { ICatBreed, ICatImage, ICategories } from '../../interfaces';
+import { ICatBreedResponse, ICatImageResponse, ICategoriesResponse } from '../../interfaces';
 import { ApiClientBaseService } from '../base-api';
 import { ApiRoutes } from './enum';
 
@@ -14,15 +14,15 @@ export class ApiCatService {
   constructor(private apiService: ApiClientBaseService) {}
 
 
-  getCats(): Observable<ICatImage[]> {
-      return this.apiService.get<ICatImage[]>(ApiRoutes.images_search, { limit: 20, include_breeds: true });
+  getCats(): Observable<ICatImageResponse[]> {
+      return this.apiService.get<ICatImageResponse[]>(ApiRoutes.images_search, { limit: 20, include_breeds: true });
   }
 
-  getBreeds(): Observable<ICatBreed[]> {
-    return this.apiService.get<ICatBreed[]>(ApiRoutes.breeds, { limit: 10, page: 0 });
+  getBreeds(): Observable<ICatBreedResponse[]> {
+    return this.apiService.get<ICatBreedResponse[]>(ApiRoutes.breeds, { limit: 10, page: 0 });
   }
 
-  getCategories(): Observable<ICategories[]> {
-    return this.apiService.get<ICategories[]>(ApiRoutes.categories);
+  getCategories(): Observable<ICategoriesResponse[]> {
+    return this.apiService.get<ICategoriesResponse[]>(ApiRoutes.categories);
   }
 }

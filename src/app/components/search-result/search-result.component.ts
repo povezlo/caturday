@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Select, Store } from '@ngxs/store';
 import { CatState } from '@store/state';
 import { GetCats } from '@store/actions';
-import { MatPaginator } from '@angular/material/paginator';
 
-import { ICatImage } from '@shared/interfaces';
+import { ICatImageResponse } from '@shared/interfaces';
 import { trackByIndexFn } from '@shared/helpers';
 
 @Component({
@@ -16,8 +15,7 @@ import { trackByIndexFn } from '@shared/helpers';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchResultComponent  implements OnInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @Select(CatState.getCats) catlist$!: Observable<ICatImage[]>;
+  @Select(CatState.getCats) catlist$!: Observable<ICatImageResponse[]>;
 
   trackByFn = trackByIndexFn;
 

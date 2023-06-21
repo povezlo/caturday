@@ -1,8 +1,8 @@
 <mat-card class="sidebar">
   <mat-form-field appearance="fill">
-    <mat-label>Порода</mat-label>
+    <mat-label>Breeds</mat-label>
     <mat-select [(value)]="selectedBreed" (selectionChange)="applyFilters()">
-      <mat-option value="all">Все породы</mat-option>
+      <mat-option value="all">All breeds</mat-option>
       <!-- <mat-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</mat-option> -->
     </mat-select>
   </mat-form-field>
@@ -15,7 +15,7 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Количество результатов</mat-label>
+    <mat-label>Number of results</mat-label>
     <mat-select [(value)]="selectedLimit" (selectionChange)="applyFilters()">
       <mat-option value="10">10</mat-option>
       <mat-option value="20">20</mat-option>

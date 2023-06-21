@@ -1,12 +1,12 @@
-export interface ICatImage {
-  breeds: ICatBreed[];
+export interface ICatImageResponse {
+  breeds: ICatBreedResponse[];
   id: string;
   url: string;
   width: number;
   height: number;
 }
 
-export interface ICatBreed {
+export interface ICatBreedResponse {
   weight: ICatWeight;
   id: string;
   name: string;
@@ -58,7 +58,7 @@ export interface IBreedImage {
   url: number;
 }
 
-export interface ICategories {
+export interface ICategoriesResponse {
   id: number;
   name: string;
 }

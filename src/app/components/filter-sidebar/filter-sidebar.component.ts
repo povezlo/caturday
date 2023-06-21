@@ -6,7 +6,7 @@ import { GetBreeds, GetCategories } from '@store/actions';
 import { BreedState, CategoriesState } from '@store/state';
 
 import { trackByIndexFn } from '@shared/helpers';
-import { ICatBreed, ICategories } from '@shared/interfaces';
+import { ICatBreedResponse, ICategoriesResponse } from '@shared/interfaces';
 @Component({
   selector: 'app-filter-sidebar',
   templateUrl: './filter-sidebar.component.html',
@@ -14,8 +14,8 @@ import { ICatBreed, ICategories } from '@shared/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilterSidebarComponent implements OnInit {
-  @Select(BreedState.getBreeds) breedlist$!: Observable<ICatBreed[]>;
-  @Select(CategoriesState.getCategories) categorieslist$!: Observable<ICategories[]>;
+  @Select(BreedState.getBreeds) breedlist$!: Observable<ICatBreedResponse[]>;
+  @Select(CategoriesState.getCategories) categorieslist$!: Observable<ICategoriesResponse[]>;
   selectedBreed = 'all';
   selectedLimit = 10;
 

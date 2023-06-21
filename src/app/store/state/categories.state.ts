@@ -3,9 +3,9 @@ import { tap } from 'rxjs/operators';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { GetCategories, SetCategories } from '@store/actions';
 import { ApiCatService } from '@shared/services';
-import { ICategories } from '@shared/interfaces';
+import { ICategoriesResponse } from '@shared/interfaces';
 
-@State<ICategories[]>({
+@State<ICategoriesResponse[]>({
   name: 'categories',
   defaults: []
 })
@@ -15,12 +15,12 @@ export class CategoriesState {
   constructor(private api: ApiCatService) {}
 
   @Selector()
-  static getCategories(state: ICategories[]) {
+  static getCategories(state: ICategoriesResponse[]) {
     return state;
   }
 
   @Action(GetCategories)
-  getCategories({ setState }: StateContext<ICategories[]>) {
+  getCategories({ setState }: StateContext<ICategoriesResponse[]>) {
     return this.api.getCategories().pipe(
       tap((categories) => {
         setState(categories);
@@ -29,7 +29,7 @@ export class CategoriesState {
   }
 
   @Action(SetCategories)
-  setCategories({ setState }: StateContext<ICategories[]>, { payload }: SetCategories) {
+  setCategories({ setState }: StateContext<ICategoriesResponse[]>, { payload }: SetCategories) {
     setState(payload);
   }
 }

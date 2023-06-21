@@ -5,10 +5,10 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { GetCats, SetCats } from '@store/actions';
 
 import { ApiCatService, LoaderService } from '@shared/services';
-import { ICatImage } from '@shared/interfaces';
+import { ICatImageResponse } from '@shared/interfaces';
 import { LoaderState } from '@shared/ui-kit';
 
-@State<ICatImage[]>({
+@State<ICatImageResponse[]>({
   name: 'cats',
   defaults: []
 })
@@ -18,13 +18,13 @@ export class CatState {
   constructor(private api: ApiCatService, private loader: LoaderService) {}
 
   @Selector()
-  static getCats(state: ICatImage[]) {
+  static getCats(state: ICatImageResponse[]) {
 
     return state;
   }
 
   @Action(GetCats)
-  getCats({ setState }: StateContext<ICatImage[]>) {
+  getCats({ setState }: StateContext<ICatImageResponse[]>) {
     return this.api.getCats().pipe(
       tap((cats) => {
         if(cats) {
@@ -39,7 +39,7 @@ export class CatState {
   }
 
   @Action(SetCats)
-  setCats({ setState }: StateContext<ICatImage[]>, { payload }: SetCats) {
+  setCats({ setState }: StateContext<ICatImageResponse[]>, { payload }: SetCats) {
     setState(payload);
   }
 }

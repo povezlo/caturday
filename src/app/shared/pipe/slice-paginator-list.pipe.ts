@@ -1,14 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { ICatImage } from '@shared/interfaces';
 
 @Pipe({
-  name: 'sliceList',
+  name: 'slicePaginatorList',
   pure: false
 })
-export class SliceListPipe implements PipeTransform {
-  transform(list: ICatImage[] | null, paginator: MatPaginator): ICatImage[] {
-    console.log(paginator);
+export class SlicePaginatorListPipe implements PipeTransform {
+  transform<T, P extends MatPaginator>(list: T[] | null, paginator: P): T[] {
     if (!list) {
       return [];
     }

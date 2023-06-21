@@ -6,7 +6,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { SearchResultComponent } from './search-result.component';
 import { LoaderModule } from '@shared/ui-kit';
 import { CardModule } from '@components/card';
-import { SliceListPipe } from '@shared/pipe';
+import { SlicePaginatorListPipe } from '@shared/pipe';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { SliceListPipe } from '@shared/pipe';
     CardModule,
     MatPaginatorModule
   ],
-  declarations: [SearchResultComponent, SliceListPipe],
+  declarations: [SearchResultComponent, SlicePaginatorListPipe],
   exports: [SearchResultComponent],
 })
 export class SearchResultModule { }

@@ -1,1 +1,1 @@
-export * from './slice-list.pipe';
+export * from './slice-paginator-list.pipe';
