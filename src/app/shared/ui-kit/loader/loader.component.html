@@ -1,13 +1,15 @@
 <div *ngIf="state$ | async as state">
   <div [class.wrapper-spinner]="state === loaderState.loading">
-    <h3 *ngIf="state === loaderState.loading">{{state}}...</h3>
+    <div class="container">
+          <h3 *ngIf="state === loaderState.loading">{{state}}...</h3>
 
-    <mat-spinner color="accent" *ngIf="state === loaderState.loading" [diameter]="60"></mat-spinner>
+          <mat-spinner color="accent" *ngIf="state === loaderState.loading" [diameter]="60"></mat-spinner>
 
-    <section class="message-container" *ngIf="state !== loaderState.loaded">
-      <p *ngIf="state === loaderState.error">Oops! Something wrong!</p>
-      <p *ngIf="state === loaderState.noData">Sorry, no data here.</p>
-    </section>
+          <section class="message-container" *ngIf="state !== loaderState.loaded">
+            <p *ngIf="state === loaderState.error">Oops! Something wrong!</p>
+            <p *ngIf="state === loaderState.noData">Sorry, no data here.</p>
+          </section>
+    </div>
 
     <ng-content></ng-content>
   </div>

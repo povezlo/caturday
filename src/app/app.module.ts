@@ -14,6 +14,7 @@ import { FooterModule, HeaderModule } from './components';
 import { ErrorInterceptor, TokenInterceptor } from './shared/interceptors';
 import { BASE_URL, ENV_API } from '@assets/injectTokens';
 import { environment } from '@environments';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -50,6 +51,10 @@ import { environment } from '@environments';
     {
         provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
         useValue: { duration: 2500 }
+    },
+    {
+        provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+        useValue: { appearance: 'outline' }
     }
 ],
   bootstrap: [AppComponent],

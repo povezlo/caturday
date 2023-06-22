@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { GetCats, SetCats } from '@store/actions';
+import { GetCats, SetCats, UpdateCats } from '@store/actions';
 
-import { ApiCatService, LoaderService } from '@shared/services';
+import { ApiCatService } from '@shared/services';
 import { ICatImageResponse } from '@shared/interfaces';
-import { LoaderState } from '@shared/ui-kit';
 
 @State<ICatImageResponse[]>({
   name: 'cats',
@@ -15,7 +14,7 @@ import { LoaderState } from '@shared/ui-kit';
 
 @Injectable()
 export class CatState {
-  constructor(private api: ApiCatService, private loader: LoaderService) {}
+  constructor(private api: ApiCatService,) {}
 
   @Selector()
   static getCats(state: ICatImageResponse[]) {
@@ -27,12 +26,6 @@ export class CatState {
   getCats({ setState }: StateContext<ICatImageResponse[]>) {
     return this.api.getCats().pipe(
       tap((cats) => {
-        if(cats) {
-            this.loader.loaderStateSource$.next(LoaderState.loaded);
-        } else {
-            this.loader.loaderStateSource$.next(LoaderState.noData);
-        }
-
         setState(cats);
       })
     );
@@ -41,5 +34,14 @@ export class CatState {
   @Action(SetCats)
   setCats({ setState }: StateContext<ICatImageResponse[]>, { payload }: SetCats) {
     setState(payload);
+  }
+
+  @Action(UpdateCats)
+  updateCats({ setState }: StateContext<ICatImageResponse[]>, { payload }: UpdateCats) {
+    return this.api.getCats(payload).pipe(
+      tap((cats) => {
+        setState(cats);
+      })
+    );
   }
 }

@@ -62,3 +62,22 @@ export interface ICategoriesResponse {
   id: number;
   name: string;
 }
+
+export interface ICatImageRequest {
+  size: 'full' | 'thumb' | 'small' | 'med' | 'full';
+  mime_types: 'jpg' | 'png' | 'gif';
+  format: 'json' | 'src';
+  order: 'RANDOM' | 'ASC' | 'DESC';
+  page: number;
+  limit: number;
+  category_ids: number;
+  breed_ids: number;
+  has_breeds: boolean;
+  include_breeds: boolean;
+  include_categories: boolean;
+}
+
+export interface ICatBreedRequest {
+  limit: number;
+  order: number;
+}

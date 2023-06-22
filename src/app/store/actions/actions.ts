@@ -1,4 +1,4 @@
-import { ICatBreedResponse, ICatImageResponse, ICategoriesResponse } from '@shared/interfaces';
+import { ICatBreedResponse, ICatImageRequest, ICatImageResponse, ICategoriesResponse } from '@shared/interfaces';
 
 export class GetCats {
   static readonly type = '[Cat] Get Cats';
@@ -7,6 +7,11 @@ export class GetCats {
 export class SetCats {
   static readonly type = '[Cat] Set Cats';
   constructor(public payload: ICatImageResponse[]) {}
+}
+
+export class UpdateCats {
+  static readonly type = '[Cat] Update Cats';
+  constructor(public payload: Partial<ICatImageRequest>) {}
 }
 
 export class GetBreeds {

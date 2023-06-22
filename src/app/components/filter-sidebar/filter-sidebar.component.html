@@ -1,26 +1,37 @@
 <mat-card class="sidebar">
-  <mat-form-field appearance="fill">
-    <mat-label>Breeds</mat-label>
-    <mat-select [(value)]="selectedBreed" (selectionChange)="applyFilters()">
-      <mat-option value="all">All breeds</mat-option>
-      <!-- <mat-option *ngFor="let breed of breeds" [value]="breed.id">{{ breed.name }}</mat-option> -->
-    </mat-select>
-  </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Categories</mat-label>
-    <mat-select (selectionChange)="applyFilters()">
-      <mat-option *ngFor="let category of categorieslist$ | async" [value]="category.id">{{ category.name }}</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <form [formGroup]="form" novalidate (ngSubmit)="applyFilters()" *ngIf="form">
 
-  <mat-form-field appearance="fill">
-    <mat-label>Number of results</mat-label>
-    <mat-select [(value)]="selectedLimit" (selectionChange)="applyFilters()">
-      <mat-option value="10">10</mat-option>
-      <mat-option value="20">20</mat-option>
-      <mat-option value="30">30</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <mat-card-title>Filters</mat-card-title>
+  <mat-divider></mat-divider>
+
+    <mat-form-field class="form-group">
+      <mat-label>Breeds</mat-label>
+      <mat-select formControlName="breed_ids">
+        <mat-option>All breeds</mat-option>
+        <mat-option *ngFor="let breed of breedlist$ | async " [value]="breed.id">{{ breed.id }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-group">
+      <mat-label>Categories</mat-label>
+      <mat-select formControlName="category_ids">
+        <mat-option>All</mat-option>
+        <mat-option *ngFor="let category of categorieslist$ | async" [value]="category.id">{{ category.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-group">
+      <mat-label>Number of results</mat-label>
+      <mat-select formControlName="limit">
+        <mat-option *ngFor="let limit of selectedLimit" [value]="limit">{{limit}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+
+    <div class="form-group">
+      <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid">Apply filters</button>
+    </div>
+  </form>
 </mat-card>
-<h2>{{breedlist$ | async | json}}</h2>

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
-import { ICatBreedResponse, ICatImageResponse, ICategoriesResponse } from '../../interfaces';
 import { ApiClientBaseService } from '../base-api';
+import { LoaderService } from '../loader';
+import { LoaderState } from '@shared/ui-kit';
+import { ICatBreedResponse, ICatImageRequest, ICatImageResponse, ICategoriesResponse } from '../../interfaces';
 import { ApiRoutes } from './enum';
 
 @Injectable({
@@ -11,15 +13,25 @@ import { ApiRoutes } from './enum';
 })
 export class ApiCatService {
 
-  constructor(private apiService: ApiClientBaseService) {}
+  constructor(private apiService: ApiClientBaseService, private loader: LoaderService) {}
 
 
-  getCats(): Observable<ICatImageResponse[]> {
-      return this.apiService.get<ICatImageResponse[]>(ApiRoutes.images_search, { limit: 20, include_breeds: true });
+  getCats(params: Partial<ICatImageRequest> = { limit: 10, category_ids: 1 }): Observable<ICatImageResponse[]> {
+    this.loader.loaderStateSource$.next(LoaderState.loading);
+
+    return this.apiService.get<ICatImageResponse[]>(ApiRoutes.images_search, params)
+    .pipe(tap((cats) => {
+        if(cats) {
+          this.loader.loaderStateSource$.next(LoaderState.loaded);
+        } else {
+          this.loader.loaderStateSource$.next(LoaderState.noData);
+        }
+      })
+    );
   }
 
-  getBreeds(): Observable<ICatBreedResponse[]> {
-    return this.apiService.get<ICatBreedResponse[]>(ApiRoutes.breeds, { limit: 10, page: 0 });
+  getBreeds(limit = 10, page = 0): Observable<ICatBreedResponse[]> {
+    return this.apiService.get<ICatBreedResponse[]>(ApiRoutes.breeds, { limit, page });
   }
 
   getCategories(): Observable<ICategoriesResponse[]> {
