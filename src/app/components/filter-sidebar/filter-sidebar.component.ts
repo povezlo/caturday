@@ -51,15 +51,14 @@ export class FilterSidebarComponent implements OnInit {
   }
 
   applyFilters(): void {
-    const breedOptions = this.form.value;
+    const breedOptions = filterObject(this.form.value);
 
     if(BREED_IDS_FIELD in breedOptions) {
       breedOptions[BREED_IDS_FIELD] = this.selectedtOption;
     }
 
-    const filterdeBreedOptions = filterObject(this.form.value);
 
-    this.store.dispatch(new UpdateCats(filterdeBreedOptions));
+    this.store.dispatch(new UpdateCats(breedOptions));
   }
 
   getOptionSelected(selectedtOption: string): void {

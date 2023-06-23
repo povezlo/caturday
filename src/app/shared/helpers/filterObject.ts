@@ -5,7 +5,7 @@ export function filterObject(object: MyObject) {
 
   for (const key in object) {
     // eslint-disable-next-line no-prototype-builtins
-    if (object.hasOwnProperty(key) && object[key] !== undefined  && object[key] !== null) {
+    if (object.hasOwnProperty(key) && object[key] !== undefined  && object[key] !== null && object[key] !== '') {
       filteredObject[key] = object[key];
     }
   }
