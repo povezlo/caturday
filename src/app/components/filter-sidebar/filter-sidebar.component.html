@@ -2,15 +2,20 @@
 
   <form [formGroup]="form" novalidate (ngSubmit)="applyFilters()" *ngIf="form">
 
-  <mat-card-title>Filters</mat-card-title>
-  <mat-divider></mat-divider>
+    <mat-card-title>Filters</mat-card-title>
+    <mat-divider></mat-divider>
 
     <mat-form-field class="form-group">
-      <mat-label>Breeds</mat-label>
-      <mat-select formControlName="breed_ids">
-        <mat-option>All breeds</mat-option>
-        <mat-option *ngFor="let breed of breedlist$ | async " [value]="breed.id">{{ breed.name }}</mat-option>
-      </mat-select>
+      <input matInput formControlName="breed_ids" placeholder="Search breed" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let breed of filteredBreeds$ | async "
+          [value]="breed.name"
+          (click)="getOptionSelected(breed.id)"
+          (onSelectionChange)="getOptionSelected(breed.id)"
+        >{{ breed.name }}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
 
     <mat-form-field class="form-group">
