@@ -10,32 +10,32 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Description
 
-# Created 3 get methods.:
+### Created 3 get methods.:
 - getCats(params?)
 - getBreeds()
 - getCategories()
 
-# Created filters in filter-sidebar:
+### Created filters in filter-sidebar:
 - categories
 - number of results
 - breeds
 
-# Created ngxs store:
+### Created ngxs store:
 - categories state
 - breed state
 - cats state
 
-# Created interceptors:
+### Created interceptors:
 - httperrors (catch all errors)
 - token
 
-# Created services:
+### Created services:
 - base-api
 - cat-api
 - loader
 - notification
   
-# Created pipe & helpers:
+### Created pipe & helpers:
 - slice-paginator-list.pipe (returns a new array equal to the paginator.pageSize)
 - filterObject function (returns a new object with only fields that have values)
 - trackByFn function
