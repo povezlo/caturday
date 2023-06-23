@@ -16,9 +16,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - getCategories()
 
 ### Created filters in filter-sidebar:
-- categories
-- number of results
-- breeds
+- select categories
+- select number of results
+- autocomplit breeds
 
 ### Created ngxs store:
 - categories state
