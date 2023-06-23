@@ -57,7 +57,6 @@ export class FilterSidebarComponent implements OnInit {
       breedOptions[BREED_IDS_FIELD] = this.selectedtOption;
     }
 
-
     this.store.dispatch(new UpdateCats(breedOptions));
   }
 
