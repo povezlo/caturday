@@ -40,7 +40,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - filterObject function (returns a new object with only fields that have values)
 - trackByFn function
   
-In the coming days, I plan to add more requests and expand the filter.
 
 ## Development server
 
